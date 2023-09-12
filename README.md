@@ -1,2 +1,1 @@
-# Company.Shared.Bicep
-Shared Bicep modules
+# Shared Bicep-modules repository

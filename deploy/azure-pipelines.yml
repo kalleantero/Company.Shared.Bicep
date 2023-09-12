@@ -1,0 +1,28 @@
+trigger:
+    - main
+pr:
+    - main
+
+pool:
+    vmImage: ubuntu-22.04
+    
+variables:
+    acrRepo: 'acrbiceprepo.azurecr.io'
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'AzurePlayground'
+    scriptType: bash
+    scriptLocation: inlineScript
+    useGlobalConfig: false
+    inlineScript: |
+      az bicep publish --file $(Build.SourcesDirectory)/modules/appInsights/appInsights.bicep --target "br:${{variables.acrRepo}}/bicep/modules/appinsights/appinsights.bicep:v0.11"
+      az bicep publish --file $(Build.SourcesDirectory)/modules/appService/appService.bicep --target "br:${{variables.acrRepo}}/bicep/modules/appservice/appservice.bicep:v0.9"
+      az bicep publish --file $(Build.SourcesDirectory)/modules/appService/appServicePlan.bicep --target "br:${{variables.acrRepo}}/bicep/modules/appservice/appserviceplan.bicep:v0.9"
+      az bicep publish --file $(Build.SourcesDirectory)/modules/appService/appSettings.bicep --target "br:${{variables.acrRepo}}/bicep/modules/appservice/appsettings.bicep:v0.9"
+      az bicep publish --file $(Build.SourcesDirectory)/modules/logAnalytics/logAnalytics.bicep --target "br:${{variables.acrRepo}}/bicep/modules/loganalytics/loganalytics.bicep:v0.9"
+      az bicep publish --file $(Build.SourcesDirectory)/modules/resourceGroup/resourceGroup.bicep --target "br:${{variables.acrRepo}}/bicep/modules/resourcegroup/resourcegroup.bicep:v0.9"
+      az bicep publish --file $(Build.SourcesDirectory)/modules/appInsights/dashboard.bicep --target "br:${{variables.acrRepo}}/bicep/modules/appinsights/dashboard.bicep:v0.9"
+      az bicep publish --file $(Build.SourcesDirectory)/modules/keyVault/keyVault.bicep --target "br:${{variables.acrRepo}}/bicep/modules/keyvault/keyvault.bicep:v0.1"
+      az bicep publish --file $(Build.SourcesDirectory)/modules/keyVault/keyVaultPolicy.bicep --target "br:${{variables.acrRepo}}/bicep/modules/keyvault/keyvaultpolicy.bicep:v0.1"

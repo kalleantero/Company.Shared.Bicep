@@ -1,0 +1,24 @@
+{
+    "applicationInsights": "appi",
+    "logAnalyticsWorkspace": "log",
+    "appServicePlan": "plan",
+    "webApp": "app",
+    "sqlServer": "sql",
+    "sqlDatabase": "sqldb",
+    "sqlElasticPool": "sqlep",
+    "keyVault": "kv",
+    "serviceBus": "sb",
+    "cosmosAccount": "cosno",
+    "cosmosDatabase": "cosmos",
+    "functionsApp": "func",
+    "storageAccount": "st",
+    "resourceGroup": "rg",
+    "managedIdentity": "id",
+    "appConfiguration": "appcs",
+    "eventHubNameSpace": "evhns",
+    "eventHub": "evh",
+    "eventGridTopic": "evgt",
+    "eventGridSubscription": "evgs",
+    "cognitiveServices": "cog"
+  }
+  
